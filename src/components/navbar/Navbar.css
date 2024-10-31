@@ -1,0 +1,11 @@
+.primary-green{
+    color: #23BE0A;
+}
+
+ul a.active {
+    color: #23BE0A;
+    padding:  0.5rem 1rem;
+    border: 1px solid #23BE0A;
+    border-radius: 0.5rem;
+    font-weight: 600;
+}

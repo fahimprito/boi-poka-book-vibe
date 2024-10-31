@@ -1,10 +1,12 @@
 import { FaBars } from "react-icons/fa";
+import { NavLink } from "react-router-dom";
+import "./Navbar.css"
 
 const Navbar = () => {
     const links = <>
-        <li><a>Home</a></li>
-        <li><a>Listed Books</a></li>
-        <li><a>Pages to Read</a></li>
+        <li><NavLink to={"/"}>Home</NavLink></li>
+        <li><NavLink to={"/"}>Listed Books</NavLink></li>
+        <li><NavLink to={"/"}>Pages to Read</NavLink></li>
     </>
 
 
@@ -26,15 +28,15 @@ const Navbar = () => {
                             bg-sky-400 rounded-lg hover:bg-sky-600">Sign up</a>
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-2xl">Book Vibe</a>
+                    <a className="text-3xl font-bold">Book Vibe</a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
+                    <ul className="flex gap-4 text-lg">
                         {links}
                     </ul>
                 </div>
                 <div className="navbar-end hidden lg:flex gap-4">
-                    <a className="btn px-6 text-white text-lg bg-green-600 rounded-lg hover:bg-green-700">Sign In</a>
+                    <a className="btn px-6 text-white text-lg bg-[#23BE0A] rounded-lg hover:bg-green-700">Sign In</a>
                     <a className="btn px-6 text-white text-lg bg-sky-400 rounded-lg hover:bg-sky-600">Sign up</a>
                 </div>
             </div>
