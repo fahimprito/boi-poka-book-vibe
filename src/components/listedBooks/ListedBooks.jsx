@@ -8,12 +8,13 @@ import { useLoaderData } from 'react-router-dom';
 const ListedBooks = () => {
     const [readList, setReadList] = useState([]);
     const allBooks = useLoaderData();
+    const [sort, setSort] = useState('');
     // ideally we will directly get the read book list from the database
 
     useEffect(() => {
         const storedReadList = getStoredReadList();
         const storedReadListInt = storedReadList.map(id => parseInt(id));
-        
+
         // console.log(storedReadList, storedReadListInt, allBooks);
 
         // 
@@ -23,11 +24,43 @@ const ListedBooks = () => {
 
     }, []);
 
+    const handleSort = sortType => {
+        setSort(sortType);
+
+        // 
+        if (sortType === 'No of pages') {
+            const sortedReadList = [...readList].sort((a, b) => a.totalPages - b.totalPages);
+            setReadList(sortedReadList);
+        }
+
+        if (sortType === 'Ratings') {
+            const sortedReadList = [...readList].sort((a, b) => a.rating - b.rating);
+            setReadList(sortedReadList);
+        }
+
+    }
+
 
     return (
-        <div className='font-sans my-20'>
-            <h3 className="text-3xl my-8">Listed Books</h3>
+        <div className='font-sans mb-20'>
 
+            <div className='flex justify-center my-8'>
+                <div className="dropdown">
+                    <div tabIndex={0} role="button" className="btn px-6 text-white text-lg bg-[#23BE0A] rounded-lg hover:bg-green-700 m-1">
+                        {
+                            sort ? `Sort by: ${sort}` : 'Sort by'
+                        }
+                    </div>
+                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                        <li onClick={() => handleSort('Ratings')}><a>Ratings</a></li>
+                        <li onClick={() => handleSort('No of pages')}><a>No of pages</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+
+            <h3 className="text-3xl">Listed Books</h3>
             <div>
                 <Tabs>
                     <TabList>
